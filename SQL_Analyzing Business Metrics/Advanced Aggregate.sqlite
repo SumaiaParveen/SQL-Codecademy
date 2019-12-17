@@ -1,0 +1,9 @@
+select *
+from orders
+order by id
+limit 10;
+
+select *
+from order_items
+order by id
+limit 10;
