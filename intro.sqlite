@@ -145,8 +145,7 @@ limit 10;
 
 -- Complete the query below. The numerator should count the distinct order_ids. The denominator should count the distinct values of the orders table’s delivered_to field (orders.delivered_to).
 
-select name, round(1.0 * count(distinct order_id) /
-count(distinct delivered_to), 2) as reorder_rate 
+select name, round(1.0 * count(distinct order_id) / count(distinct delivered_to), 2) as reorder_rate 
 from order_items
 join orders 
 on orders.id = order_items.order_id
