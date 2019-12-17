@@ -1,9 +1,136 @@
+-- Complete each query by replacing the comments /**/ with SQL code. We’ll start by looking at SpeedySpoon’s data. The orders table 
+-- has a row for each order of a SpeedySpoon delivery. It says when the order took place, and who ordered it. Add code to the select 
+-- statement to select all columns in the orders table.
+
 select *
 from orders
 order by id
 limit 10;
 
+-- The order_items table lists the individual foods and their prices in each order. Complete the query to select all columns in the 
+-- order_items table.
+
 select *
 from order_items
 order by id
 limit 10;
+
+-- Let’s get a Daily Count of orders from the orders table. Complete the query using the date function to cast the timestamps in 
+-- ordered_at to dates.
+
+select date(ordered_at) as date
+from orders
+order by 1
+limit 10;
+
+-- Use the date and count functions and group by clause to count and group the orders by the dates they were ordered_at.
+
+select date(ordered_at) as date, count(distinct date(ordered_at)) as orders
+from orders
+group by 1
+limit 10;
+
+-- We can make a few changes to our Daily Count query to get the revenue. First, instead of using count(1) to count the rows per date, 
+-- we’ll use round(sum(amount_paid), 2) to add up the revenue per date. Complete the query by adding revenue per date. Second, we need 
+-- to join in the order_items table because that table has an amount_paid column representing revenue. Complete the query by adding a 
+-- join clause where orders.id = order_items.order_id.
+
+select date(ordered_at) as date, round(sum(amount_paid), 2) as revenue
+from orders
+    join order_items 
+    on orders.id = order_items.order_id
+group by 1
+order by 1
+limit 10;
+
+-- Nice. Now with a small change, we can find out how much we’re making per day for any single dish. What’s the daily revenue from 
+-- customers ordering kale smoothies? Complete the query by using a where clause to filter the daily sums down to orders where the 
+-- name = 'kale-smoothie'.
+
+select date(ordered_at) as date, round(sum(amount_paid), 2) as revenue
+from orders
+    join order_items on 
+      orders.id = order_items.order_id
+where name = 'kale-smoothie'
+group by 1
+order by 1
+limit 10;
+
+--  To get the percent of revenue that each item represents, we need to know the total revenue of each item. We will later divide the 
+-- per-item total with the overall total revenue. The following query groups and sum the products by price to get the total revenue 
+-- for each item. Complete the query by passing in sum(amount_paid) into the round function and rounding to two decimal places.
+
+select name, round(sum(amount_paid), 2) as total_revenue
+from order_items
+group by name
+order by 2 desc;
+
+-- Complete the denominator in the subquery, which is the total revenue from order_items. Use the sum function to query the amount_paid 
+-- from the order_items table.
+
+select name, round(sum(amount_paid) /
+  (select sum(amount_paid) from order_items) * 100.0, 2) as pct
+from order_items
+group by 1
+order by 2 desc;
+
+-- We’ll build our own categories using a case statement. Complete the query below with a case condition of name that lists out each
+-- product, and decides its group.
+
+select name,
+  case name
+    when 'kale-smoothie'    then 'smoothie'
+    when 'banana-smoothie'  then 'smoothie'
+    when 'orange-juice'     then 'drink'
+    when 'soda'             then 'drink'
+    when 'blt'              then 'sandwich'
+    when 'grilled-cheese'   then 'sandwich'
+    when 'tikka-masala'     then 'dinner'
+    when 'chicken-parm'     then 'dinner'
+     else 'other'
+  end as category
+from order_items
+order by id
+limit 10;
+
+-- Complete the query by using the category column created by the case statement in our previous revenue percent calculation. Add the 
+-- denominator that will sum the amount_paid.
+
+select
+  case name
+    when 'kale-smoothie'    then 'smoothie'
+    when 'banana-smoothie'  then 'smoothie'
+    when 'orange-juice'     then 'drink'
+    when 'soda'             then 'drink'
+    when 'blt'              then 'sandwich'
+    when 'grilled-cheese'   then 'sandwich'
+    when 'tikka-masala'     then 'dinner'
+    when 'chicken-parm'     then 'dinner'
+    else 'other'
+  end as category, round(1.0 * sum(amount_paid) /
+    (select sum(amount_paid) from order_items) * 100, 2) as pct
+from order_items
+group by 1
+order by 2 desc;
+
+-- Let’s calculate the reorder ratio for all of SpeedySpoon’s products and take a look at the results. Counting the total orders 
+-- per product is straightforward. We count the distinct order_ids in the order_items table. Complete the query by passing in the 
+-- distinct keyword and the order_id column name into the count function
+
+select name, count(distinct(order_id)) as orders
+from order_items
+group by 1
+order by 1
+limit 10;
+
+-- Now we need the number of people making these orders. To get that information, we need to join in the orders table and count 
+-- unique values in the delivered_to field, and sort by the reorder_rate. Complete the query below. The numerator should count the
+-- distinct order_ids. The denominator should count the distinct values of the orders table’s delivered_to field (orders.delivered_to).
+
+select name, round(1.0 * count(distinct order_id) /
+  count(distinct delivered_to), 2) as reorder_rate
+from order_items
+  join orders on
+    orders.id = order_items.order_id
+group by 1
+order by 2 desc;
