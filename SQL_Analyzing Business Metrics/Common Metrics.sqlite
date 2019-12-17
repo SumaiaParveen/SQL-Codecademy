@@ -1,24 +1,20 @@
--- This company has two tables, gameplays and purchases. The purchases table lists all purchases made by players while they’re playing Mineblocks.
-
--- Complete the query to select from purchases.
+-- This company has two tables, gameplays and purchases. The purchases table lists all purchases made by players while they’re 
+-- playing Mineblocks. Complete the query to select from purchases.
 
 select * 
 from purchases
 order by id 
 limit 10;
 
--- The gameplays table lists the date and platform for each session a user plays.
-
--- Select from gameplays.
+-- The gameplays table lists the date and platform for each session a user plays. Select from gameplays.
 
 select * 
 from gameplays 
 order by id 
 limit 10;
 
--- Daily Revenue is simply the sum of money made per day.
-
--- To get close to Daily Revenue, we calculate the daily sum of the prices in the purchases table. Complete the query by using the sum function and passing the price column from the purchases table.
+-- Daily Revenue is simply the sum of money made per day. To get close to Daily Revenue, we calculate the daily sum of the prices in the
+-- purchases table. Complete the query by using the sum function and passing the price column from the purchases table.
 
 select date(created_at), round(sum(price), 2)
 from purchases
@@ -35,11 +31,11 @@ group by 1
 order by 1
 limit 10;
 
--- For Mineblocks, we’ll use the gameplays table to calculate DAU. Each time a user plays the game, their session is recorded in gameplays. Thus, a distinct count of users per day from gameplays will give us DAU.
-
--- DAU is defined as the number of unique players seen in-game each day. It’s important not to double count users who played multiple times, so we’ll use distinct in our count function.
-
--- Calculate Daily Active Users for Mineblocks. Complete the query’s count function by passing in the distinct keyword and the user_id column name.
+-- For Mineblocks, we’ll use the gameplays table to calculate DAU. Each time a user plays the game, their session is recorded in 
+-- gameplays. Thus, a distinct count of users per day from gameplays will give us DAU. DAU is defined as the number of unique players 
+-- seen in-game each day. It’s important not to double count users who played multiple times, so we’ll use distinct in our count 
+-- function. Calculate Daily Active Users for Mineblocks. Complete the query’s count function by passing in the distinct keyword and 
+-- the user_id column name.
 
 select date(created_at), count(distinct user_id) as dau
 from gameplays
@@ -47,9 +43,9 @@ group by 1
 order by 1
 limit 10;
 
--- Previously we calculated DAU only per day, so the output we wanted was [date, dau_count]. Now we want DAU per platform, making the desired output [date, platform, dau_count].
-
--- Calculate DAU for Mineblocks per-platform. Complete the query below. You will need to select the platform column and add a count function by passing in the distinct keyword and the user_id column name.
+-- Previously we calculated DAU only per day, so the output we wanted was [date, dau_count]. Now we want DAU per platform, making the 
+-- desired output [date, platform, dau_count]. Calculate DAU for Mineblocks per-platform. Complete the query below. You will need to
+-- select the platform column and add a count function by passing in the distinct keyword and the user_id column name.
 
 select date(created_at), platform, count(distinct user_id) as dau
 from gameplays
@@ -57,9 +53,10 @@ group by 1, 2
 order by 1, 2
 limit 10;
 
--- To get Daily ARPPU (Average Revenue Per Purchasing User), modify the daily revenue query from earlier to divide by the number of purchasers.
-
--- Complete the query by adding a numerator and a denominator. The numerator will display daily revenue, or sum the price columns. The denominator will display the number of purchasers by passing the distinct keyword and the user_id column name into the count function.
+-- To get Daily ARPPU (Average Revenue Per Purchasing User), modify the daily revenue query from earlier to divide by the number of
+-- purchasers. Complete the query by adding a numerator and a denominator. The numerator will display daily revenue, or sum the price 
+-- columns. The denominator will display the number of purchasers by passing the distinct keyword and the user_id column name into the 
+-- count function.
 
 select date(created_at), round(sum(price) / count(distinct(user_id)), 2) as arppu
 from purchases
@@ -78,7 +75,8 @@ group by 1
 )
 select * from daily_revenue order by dt;
 
--- Building on this CTE, we can add in DAU from earlier. Complete the query by calling the DAU query we created earlier, now aliased as daily_players:
+-- Building on this CTE, we can add in DAU from earlier. Complete the query by calling the DAU query we created earlier, now aliased 
+-- as daily_players:
 
 with daily_revenue as (
 select date(created_at) as dt, round(sum(price), 2) as rev
@@ -95,7 +93,8 @@ group by 1
 select * from daily_players order by dt
 limit 10;
 
--- Now that we have the revenue and DAU, join them on their dates and calculate daily ARPU. Complete the query by adding the keyword using in the join clause.
+-- Now that we have the revenue and DAU, join them on their dates and calculate daily ARPU. Complete the query by adding the keyword 
+-- using in the join clause.
 
 with daily_revenue as (
 select date(created_at) as dt, round(sum(price), 2) as rev
@@ -121,13 +120,11 @@ from gameplays as g1
 order by dt
 limit 100;
 
--- Now we’ll join gameplays on itself so that we can have access to all gameplays for each player, for each of their gameplays.
-
--- This is known as a self-join and will let us connect the players on Day N to the players on Day N+1. In order to join a table to itself, it must be aliased so we can access each copy separately.
-
--- We aliased gameplays in the query above because in the next step, we need to join gameplays to itself so we can get a result selecting [date, user_id, user_id_if_retained].
-
--- Complete the query by using a join statement to join gameplays to itself on user_id using the aliases g1 and g2.
+-- Now we’ll join gameplays on itself so that we can have access to all gameplays for each player, for each of their gameplays. This is 
+-- known as a self-join and will let us connect the players on Day N to the players on Day N+1. In order to join a table to itself, it 
+-- must be aliased so we can access each copy separately. We aliased gameplays in the query above because in the next step, we need to
+-- join gameplays to itself so we can get a result selecting [date, user_id, user_id_if_retained]. Complete the query by using a join 
+-- statement to join gameplays to itself on user_id using the aliases g1 and g2.
 
 select date(g1.created_at) as dt, g1.user_id
 from gameplays as g1
@@ -136,9 +133,8 @@ on g1.user_id = g2.user_id
 order by 1
 limit 100;
 
--- The previous query joined all rows in gameplays against all other rows for each user, making a massive result set that we don’t need.
-
--- We’ll need to modify this query.
+-- The previous query joined all rows in gameplays against all other rows for each user, making a massive result set that we don’t 
+-- need. We’ll need to modify this query.
 
 select date(g1.created_at) as dt, g1.user_id, g2.user_id
 from gameplays as g1
@@ -148,11 +144,10 @@ and date(g1.created_at) = date(datetime(g2.created_at, '-1 day'))
 order by 1
 limit 100;
 
--- The query above won’t return meaningful results because we’re using an inner join. This type of join requires that the condition be met for all rows, effectively limiting our selection to only the users that have returned.
-
--- Instead, we want to use a left join, this way all rows in g1 are preserved, leaving nulls in the rows from g2 where users did not return to play the next day.
-
--- Change the join clause to use left join and count the distinct number of users from g1 and g2 per date.
+-- The query above won’t return meaningful results because we’re using an inner join. This type of join requires that the condition 
+-- be met for all rows, effectively limiting our selection to only the users that have returned. Instead, we want to use a left join, 
+-- this way all rows in g1 are preserved, leaving nulls in the rows from g2 where users did not return to play the next day. Change the 
+-- join clause to use left join and count the distinct number of users from g1 and g2 per date.
 
 select
   date(g1.created_at) as dt,
@@ -166,7 +161,8 @@ group by 1
 order by 1
 limit 100;
 
--- Now that we have retained users as count(distinct g2.user_id) and total users as count(distinct g1.user_id), divide retained users by total users to calculate 1 day retention!
+-- Now that we have retained users as count(distinct g2.user_id) and total users as count(distinct g1.user_id), divide retained users 
+-- by total users to calculate 1 day retention!
 
 select
   date(g1.created_at) as dt,
