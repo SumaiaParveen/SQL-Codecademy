@@ -1,4 +1,4 @@
-# SQL-codeacademy
+# Codecademy: SQL
 
 ## PROJECTS
 
@@ -23,3 +23,12 @@
 #### 10. Usage Funnels with Warby Parker: analyze marketing funnels [.pdf](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Skillpath_Analyze%20data%20with%20SQL/Week%206_Analyze%20Real%20Data%20with%20SQL/Project_Usage%20Funnels%20with%20Warby%20Parker.pdf) [.sql](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Skillpath_Analyze%20data%20with%20SQL/Week%206_Analyze%20Real%20Data%20with%20SQL/Project_Usage%20Funnels%20with%20Warby%20Parker.sql)
 
 #### 11. CoolTShirts Marketing Attribution: mapping customer journey [.pdf](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Skillpath_Analyze%20data%20with%20SQL/Week%206_Analyze%20Real%20Data%20with%20SQL/Project_Marketing%20Attribution%20Queries.pdf) [.sql](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Skillpath_Analyze%20data%20with%20SQL/Week%206_Analyze%20Real%20Data%20with%20SQL/Project_Marketing%20Attribution%20Queries.sql)
+
+#### 12. Analyzing Trends in Startup [.pdf](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_Learn%20SQL/Aggregate%20Functions/Project_Trends%20in%20Startup.pdf) [.sql](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_Learn%20SQL/Aggregate%20Functions/Project_Trends%20in%20Startup.sql)
+
+#### 13. Analyzing Lyft/REBU Trips Data [.pdf](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_Learn%20SQL/Multiple%20Tables/Project_Multiple%20Tables%20with%20REBU.pdf) [.sql](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_Learn%20SQL/Multiple%20Tables/Project_Multiple%20Tables%20with%20REBU.sql)
+
+#### 14. Aggregate SpeedySpoon Data to ctreate a Summary [.pdf](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_SQL%20Analyzing%20Business%20Metrics/Advanced%20Aggregate.pdf) [.sql](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_SQL%20Analyzing%20Business%20Metrics/Advanced%20Aggregate.sql)
+
+#### 15. Producing KPIs of Mineblocks [.pdf](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_SQL%20Analyzing%20Business%20Metrics/Common%20Metrics.pdf) [.sql](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_SQL%20Analyzing%20Business%20Metrics/Common%20Metrics.sql)
+
