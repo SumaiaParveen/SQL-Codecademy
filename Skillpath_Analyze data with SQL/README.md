@@ -1,4 +1,4 @@
-# [Codecademy Skill-path: Analyze Data with SQL]
+# [Codecademy Skill-path: Analyze Data with SQL](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Skillpath_Analyze%20data%20with%20SQL/certificate_Analyze%20Data%20with%20SQL.pdf)
 
 ## PROJECTS
 
