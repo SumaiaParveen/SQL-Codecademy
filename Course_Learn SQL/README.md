@@ -1,4 +1,4 @@
-# [Learn SQL]()
+# [Learn SQL](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_Learn%20SQL/certificate_Learn%20SQL.pdf)
 
 ## PROJECTS
 
