@@ -1,4 +1,4 @@
-# [Analyzing BUsiness Metrics using SQL](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_SQL%20Analyzing%20Business%20Metrics/certificate_How%20to%20Analyze%20Business%20Metrics%20with%20SQL.pdf)
+# [Analyzing Business Metrics using SQL](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Course_SQL%20Analyzing%20Business%20Metrics/certificate_How%20to%20Analyze%20Business%20Metrics%20with%20SQL.pdf)
 
 ## PROJECTS
 
