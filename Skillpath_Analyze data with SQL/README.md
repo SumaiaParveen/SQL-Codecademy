@@ -1,4 +1,6 @@
-# PROJECTS
+# [Codecademy Skill-path: Analyze Data with SQL]
+
+## PROJECTS
 
 #### 1. Create a Table [.pdf](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Skillpath_Analyze%20data%20with%20SQL/Week%201_Get%20Started%20with%20SQL/Project_Create%20a%20Table.pdf) [.sql](https://github.com/SumaiaParveen/SQL-codeacademy/blob/master/Skillpath_Analyze%20data%20with%20SQL/Week%201_Get%20Started%20with%20SQL/Project_Create%20a%20Table.sql)
 
